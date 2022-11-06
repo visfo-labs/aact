@@ -47,10 +47,40 @@ module AACT
     end
     AACT_PORT = ENV['AACT_PORT'] || 5432
     AACT_PASS = ENV['AACT_PASSWORD'] || ''
-    AACT_BACK_DATABASE_URL       = "postgres://#{AACT_DB_SUPER_USERNAME}:#{AACT_PASS}@#{AACT_HOST}:#{AACT_PORT}/#{AACT_BACK_DATABASE_NAME}"
-    AACT_ADMIN_DATABASE_URL      = "postgres://#{AACT_DB_SUPER_USERNAME}:#{AACT_PASS}@#{AACT_HOST}:5432/#{AACT_ADMIN_DATABASE_NAME}"
-    AACT_PUBLIC_DATABASE_URL     = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_PUBLIC_DATABASE_NAME}"
-    AACT_ALT_PUBLIC_DATABASE_URL = "postgres://#{AACT_DB_SUPER_USERNAME}@#{AACT_PUBLIC_HOSTNAME}:5432/#{AACT_ALT_PUBLIC_DATABASE_NAME}"
+    AACT_BACK_DATABASE_URL       = {
+      encoding: 'utf8',
+      adapter:  'postgresql',
+      database: AACT_BACK_DATABASE_NAME,
+      username: AACT_DB_SUPER_USERNAME,
+      password: AACT_PASS,
+      host:     AACT_HOST,
+      port:     AACT_PORT
+    }
+    AACT_ADMIN_DATABASE_URL      = {
+      encoding: 'utf8',
+      adapter:  'postgresql',
+      database: AACT_ADMIN_DATABASE_NAME,
+      username: AACT_DB_SUPER_USERNAME,
+      password: AACT_PASS,
+      host:     AACT_HOST,
+    }
+    AACT_PUBLIC_DATABASE_URL     = {
+      encoding: 'utf8',
+      adapter:  'postgresql',
+      database: AACT_PUBLIC_DATABASE_NAME,
+      username: AACT_DB_SUPER_USERNAME,
+      password: AACT_PASS,
+      host:     AACT_PUBLIC_HOSTNAME,
+    }
+    AACT_ALT_PUBLIC_DATABASE_URL = {
+      encoding: 'utf8',
+      adapter:  'postgresql',
+      database: AACT_ALT_PUBLIC_DATABASE_NAME,
+      username: AACT_DB_SUPER_USERNAME,
+      password: AACT_PASS,
+      host:     AACT_PUBLIC_HOSTNAME,
+    }
+  
     # If you deploy to a server, you need the following env variables defined for capistrano:
     # AACT_DEPLOY_TO
     AACT_PROD_REPO_URL="git@github.com:ctti-clinicaltrials/aact.git"

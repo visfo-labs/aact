@@ -11,7 +11,6 @@ default: &default
 development:
   <<: *default
   host:  <%= ENV.fetch('APPLICATION_HOST', 'localhost') %>
-  port: 5432
   database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
   password: <%= ENV.fetch("AACT_PASSWORD", '') %>
   pool: 50
@@ -27,7 +26,6 @@ production:
   username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME", 'aact') %>
   password: <%= ENV.fetch("AACT_PASSWORD", '') %>
   host:  <%= ENV.fetch('AACT_HOST', 'localhost') %>
-  port:  <%= ENV.fetch('AACT_PORT', 5432) %>
   database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
 
 public:
