@@ -1,0 +1,15 @@
+public:
+  encoding: utf8
+  adapter: postgresql
+  host: <%= ENV["AACT_HOST"] %>
+  database: <%= ENV["AACT_PUBLIC_DATABASE_NAME"] %>
+  username: <%= ENV["AACT_DB_SUPER_USERNAME"] %>
+  password: <%= ENV["AACT_PASSWORD"] %>
+
+staging:
+  encoding: utf8
+  adapter: postgresql
+  host: <%= ENV["AACT_HOST"] %>
+  database: <%= ENV["AACT_ALT_PUBLIC_DATABASE_NAME"] %>
+  username: <%= ENV["AACT_DB_SUPER_USERNAME"] %>
+  password: <%= ENV["AACT_PASSWORD"] %>
