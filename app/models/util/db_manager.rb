@@ -61,8 +61,8 @@ module Util
       host, port, username, database, password = config[:host], config[:port], config[:username], config[:database], config[:password]
 
       # prevent new connections and drop current connections
-      connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 0;")
-      connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
+      # connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 0;")
+      # connection.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname ='#{database}' AND usename <> '#{username}'")
 
       # drop the schema
       log "  dropping in #{host}:#{port}/#{database} database..."
@@ -76,7 +76,7 @@ module Util
 
       # restore database
       log "  restoring to #{host}:#{port}/#{database} database..."
-      cmd = "PGPASSWORD=#{password} pg_restore -c -j 5 -v -h #{host} -p #{port} -U #{username}  -d #{database} #{filename}"
+      cmd = "PGPASSWORD=#{password} pg_restore -c -j 5 -v -h #{host} -U #{username}  -d #{database} #{filename}"
       run_restore_command_line(cmd)
 
       # verify that the database was correctly restored
